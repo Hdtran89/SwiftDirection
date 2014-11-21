@@ -19,6 +19,7 @@
 		E3B30E7219F8E27800410D7A /* ListDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B30E7119F8E27800410D7A /* ListDirection.swift */; };
 		E3B30E7419F8E30D00410D7A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B30E7319F8E30D00410D7A /* CoreData.framework */; };
 		E3B30E7719F8E4FB00410D7A /* Location.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3B30E7519F8E4FB00410D7A /* Location.xcdatamodeld */; };
+		E3D083CB1A1EDA62005EC71F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D083CA1A1EDA62005EC71F /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		E3B30E7119F8E27800410D7A /* ListDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDirection.swift; sourceTree = "<group>"; };
 		E3B30E7319F8E30D00410D7A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E3B30E7619F8E4FB00410D7A /* Location.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Location.xcdatamodel; sourceTree = "<group>"; };
+		E3D083CA1A1EDA62005EC71F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3D083CB1A1EDA62005EC71F /* MapKit.framework in Frameworks */,
 				E3B30E7419F8E30D00410D7A /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +75,7 @@
 		E3B30E3D19F8DCDB00410D7A = {
 			isa = PBXGroup;
 			children = (
+				E3D083CA1A1EDA62005EC71F /* MapKit.framework */,
 				E3B30E7319F8E30D00410D7A /* CoreData.framework */,
 				E3B30E4819F8DCDB00410D7A /* SwiftDirection */,
 				E3B30E6019F8DCDB00410D7A /* SwiftDirectionTests */,
@@ -463,6 +467,7 @@
 				E3B30E6919F8DCDB00410D7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E3B30E6A19F8DCDB00410D7A /* Build configuration list for PBXNativeTarget "SwiftDirectionTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +476,7 @@
 				E3B30E6C19F8DCDB00410D7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
