@@ -33,7 +33,7 @@ class BaseLocation: UIViewController,CLLocationManagerDelegate
             return
         }
         
-        
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
@@ -95,6 +95,8 @@ class BaseLocation: UIViewController,CLLocationManagerDelegate
         didUpdateLocations locations: [AnyObject]!)
     {
         let newLocation = locations.last as CLLocation
+        location = newLocation
+        saveCoordinate()
         println("didUpdateLocation \(newLocation)")
     }
 }
