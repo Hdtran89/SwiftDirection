@@ -12,32 +12,14 @@ import CoreLocation
 
 class BaseLocation: UIViewController,CLLocationManagerDelegate
 {
+    @IBOutlet weak var getButton:UIButton!
     
     let locationManager = CLLocationManager()
     var xcurrentcord: Float = 0
     var ycurrentcord: Float = 0
     var location:CLLocation?
     
-    @IBAction func getLocation()
-    {
-        let authStatus:CLAuthorizationStatus = CLLocationManager.authorizationStatus()
-        
-        if (authStatus == .NotDetermined)
-        {
-            locationManager.requestWhenInUseAuthorization()
-            return
-        }
-        
-        if authStatus == .Denied || authStatus == .Restricted {
-            showLocationServicesDeniedAlert()
-            return
-        }
-        
 
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
-    }
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -47,7 +29,28 @@ class BaseLocation: UIViewController,CLLocationManagerDelegate
         super.didReceiveMemoryWarning()
     }
     
-    
+    @IBAction func getLocation()
+    {
+      //  println("Hello")
+        let authStatus:CLAuthorizationStatus = CLLocationManager.authorizationStatus()
+        
+     /*   if authStatus == .NotDetermined{
+            locationManager.requestWhenInUseAuthorization()
+            return
+        }*/
+        
+        if authStatus == .Denied || authStatus == .Restricted {
+            showLocationServicesDeniedAlert()
+            return
+        }
+        
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
+        
+        saveCoordinate()
+    }
     override func prepareForSegue( segue: UIStoryboardSegue,
                                   sender: AnyObject?)
     {
@@ -71,6 +74,12 @@ class BaseLocation: UIViewController,CLLocationManagerDelegate
             
             println("floaty:  \(ycurrentcord)")
             println("floatx:  \(xcurrentcord)")
+        } else {
+            var xstring:NSString = ""
+            var ystring:NSString = ""
+            println("%y: \(ystring)")
+            println("%x: \(xstring)")
+            
         }
     }
     func showLocationServicesDeniedAlert()
@@ -84,7 +93,7 @@ class BaseLocation: UIViewController,CLLocationManagerDelegate
         alert.addAction(okAction)
         presentViewController(alert, animated: true, completion: nil)
     }
-    //Mark -- Delegation CLLocationManager
+    //Mark: - CLLocationManagerDelegate
     func locationManager(  manager:CLLocationManager!,
             didFailWithError error: NSError!)
     {

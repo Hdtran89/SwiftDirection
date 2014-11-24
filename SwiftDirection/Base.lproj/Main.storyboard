@@ -19,13 +19,16 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="getLocation" destination="9pv-A4-QxB" eventType="touchUpInside" id="5AE-tk-FaC"/>
+                                    <action selector="getLocation" destination="9pv-A4-QxB" eventType="touchUpInside" id="xqs-ea-4T5"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Current Location" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="getButton" destination="YAz-ht-5RV" id="g6m-sa-xqb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
