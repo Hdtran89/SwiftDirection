@@ -13,16 +13,19 @@ import CoreLocation
 class BaseLocation: UIViewController,CLLocationManagerDelegate
 {
     @IBOutlet weak var getButton:UIButton!
+    @IBOutlet weak var messageLabel:UILabel!
     
     let locationManager = CLLocationManager()
     var xcurrentcord: Float = 0
     var ycurrentcord: Float = 0
     var location:CLLocation?
-    
+    var updatingLocation = false
+    var lastLocationError: NSError?
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        saveCoordinate()
     }
     override func didReceiveMemoryWarning()
     {
@@ -34,10 +37,10 @@ class BaseLocation: UIViewController,CLLocationManagerDelegate
       //  println("Hello")
         let authStatus:CLAuthorizationStatus = CLLocationManager.authorizationStatus()
         
-     /*   if authStatus == .NotDetermined{
+        if authStatus == .NotDetermined{
             locationManager.requestWhenInUseAuthorization()
             return
-        }*/
+        }
         
         if authStatus == .Denied || authStatus == .Restricted {
             showLocationServicesDeniedAlert()
@@ -80,6 +83,21 @@ class BaseLocation: UIViewController,CLLocationManagerDelegate
             println("%y: \(ystring)")
             println("%x: \(xstring)")
             
+            var statusMessage: String
+            if let error = lastLocationError{
+                if error.domain == kCLErrorDomain && error.code == CLError.Denied.rawValue {
+                    statusMessage = "Location Service is Disable"
+                } else {
+                    statusMessage = "Error Getting Location"
+                }
+            } else if !CLLocationManager.locationServicesEnabled() {
+                statusMessage = "Location Services Disabled "
+            } else if updatingLocation{
+                statusMessage = "Searching..."
+            } else {
+                statusMessage = "Tap Get My Location to start"
+            }
+            messageLabel.text = statusMessage
         }
     }
     func showLocationServicesDeniedAlert()
@@ -93,11 +111,26 @@ class BaseLocation: UIViewController,CLLocationManagerDelegate
         alert.addAction(okAction)
         presentViewController(alert, animated: true, completion: nil)
     }
+    func stopLocationManager()
+    {
+        if updatingLocation{
+            locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
+            updatingLocation = false
+        }
+    }
     //Mark: - CLLocationManagerDelegate
     func locationManager(  manager:CLLocationManager!,
             didFailWithError error: NSError!)
     {
         println("didFailWithError \(error)")
+        if error.code == CLError.LocationUnknown.rawValue{
+            return
+        }
+        lastLocationError = error
+        stopLocationManager()
+        saveCoordinate()
+        
     }
     
     func locationManager(    manager: CLLocationManager!,
