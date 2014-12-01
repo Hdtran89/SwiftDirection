@@ -1,28 +1,25 @@
 //
-//  FirstViewController.swift
+//  ListRoute.swift
 //  SwiftDirection
 //
-//  Created by Hieu Tran on 10/23/14.
+//  Created by Hieu Tran on 11/30/14.
 //  Copyright (c) 2014 Hieu Tran. All rights reserved.
 //
 
+import Foundation
 import UIKit
-
-class AddRoute: UIViewController {
-
-    override func viewDidLoad() {
+class ListRoute: UITableViewController
+{
+    override func viewDidLoad(){
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
     }
-
+    
 }
-
